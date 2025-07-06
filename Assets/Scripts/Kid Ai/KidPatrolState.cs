@@ -14,7 +14,7 @@ public class KidPatrolState : KidState
 
     public override void Update()
     {
-        if (kid.CanSeePlayer())
+        if (kid.CanSeePlayer() && !kid.isChickenInCage)
         {
             kid.SwitchState(new KidChaseState(kid));
             return;

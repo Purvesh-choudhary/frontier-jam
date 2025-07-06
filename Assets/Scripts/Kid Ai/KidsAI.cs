@@ -24,9 +24,17 @@ public class KidsAI : MonoBehaviour
     public NavMeshAgent agent;
 
 
+    public Transform fovPoint;
     [SerializeField] float viewAngle = 45f;
-    [SerializeField] float viewDistance = 6f;
+    public float viewDistance = 6f;
     [SerializeField] LayerMask viewLayer;
+
+    public float catctDistance = 1f;
+    public Transform chickenHolder;
+    public Transform cageTransform;
+    public float cageDistance = 1f;
+    public bool isChickenInCage = false;
+
 
 
 
@@ -49,17 +57,17 @@ public class KidsAI : MonoBehaviour
 
     public bool CanSeePlayer()
     {
-        Vector3 dirToPlayer = (player.position - transform.position).normalized;
+        Vector3 dirToPlayer = (player.position - fovPoint.position).normalized;
 
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(fovPoint.position, player.position);
         if (distance > viewDistance)
             return false;
 
-        float angle = Vector3.Angle(transform.forward, dirToPlayer);
+        float angle = Vector3.Angle(fovPoint.forward, dirToPlayer);
         if (angle > viewAngle / 2f)
             return false;
 
-        if (Physics.Raycast(transform.position, dirToPlayer, out RaycastHit hit, viewDistance, viewLayer))
+        if (Physics.Raycast(fovPoint.position, dirToPlayer, out RaycastHit hit, viewDistance, viewLayer))
         {
             if (hit.transform != player)
                 return false;
