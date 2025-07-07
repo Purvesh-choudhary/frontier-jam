@@ -9,9 +9,18 @@ public class KidCatchState : KidState
     public override void Enter()
     {
         kid.agent.isStopped = false;
-        ChangePlayerLocation(kid.chickenHolder);
-        kid.cageTransform.GetComponentInParent<BoxCollider>().isTrigger = true;
+
         kid.player.GetComponent<PlayerController>().enabled = false;
+        kid.cageTransform.GetComponentInParent<Rigidbody>().isKinematic = true;
+        Collider[] cages = kid.cageTransform.parent.GetComponentsInChildren<Collider>();
+        foreach (Collider cage in cages)
+        {
+            cage.enabled = false;
+        }
+
+        kid.player.gameObject.transform.SetParent(kid.chickenHolder);
+        kid.player.localPosition = Vector3.zero;
+
         kid.agent.SetDestination(kid.cageTransform.position);
     }
     public override void Update()
@@ -20,24 +29,37 @@ public class KidCatchState : KidState
         if (distance < kid.cageDistance)
         {
             kid.agent.isStopped = true;
-            kid.isChickenInCage = true;
-            ChangePlayerLocation(kid.cageTransform);
-            kid.cageTransform.GetComponentInParent<BoxCollider>().isTrigger = false;
+
+            kid.player.SetParent(null); 
+            kid.player.gameObject.transform.localPosition = kid.cageTransform.position;
+
+
+
+
             kid.player.GetComponent<PlayerController>().enabled = true;
 
+            Collider[] cages = kid.cageTransform.parent.GetComponentsInChildren<Collider>();
+
+            foreach (Collider cage in cages)
+            {
+                cage.enabled = true;
+            }
+            kid.cageTransform.GetComponentInParent<Rigidbody>().isKinematic = false;
+
+            kid.isChickenInCage = true;
             kid.SwitchState(new KidPatrolState(kid));
         }
     }
     public override void Exit()
     {
-        
+
     }
 
     void ChangePlayerLocation(Transform location)
     {
-        kid.player.gameObject.transform.SetParent(location);
-        kid.player.localPosition = Vector3.zero;
+       
+
     }
-    
+
 
 }
