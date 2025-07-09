@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         if (!_isGrounded)
         {
             if (animator != null)
-                animator.SetBool("IsInAir", true);
+                animator.SetBool("IsInAir",true);
         }
 
         //  // Detect Fall : grounded → falling
@@ -68,8 +68,7 @@ public class PlayerController : MonoBehaviour
         {
             if (animator != null)
             {
-                animator.SetBool("IsInAir", false);
-                animator.SetTrigger("Land");
+                animator.SetBool("IsInAir",false);
             }
         }
 
@@ -88,11 +87,17 @@ public class PlayerController : MonoBehaviour
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             if (animator != null)
             {
-                animator.ResetTrigger("Land");
-                animator.SetTrigger("JumpStart");
                 animator.SetBool("IsInAir", true);  // we'll reset this on landing
 
             }
+        }
+    }
+    
+    public void OnAttack(){
+        if (animator != null)
+        {
+            animator.SetTrigger("Kick");
+
         }
     }
     // public void OnSneak(InputValue value)
@@ -102,7 +107,7 @@ public class PlayerController : MonoBehaviour
     //         Debug.Log("Sprint STARTED");
     //     else
     //         Debug.Log("Sprint ENDED");
-            
+
     // }
 
     private void HandleMovement()
@@ -124,27 +129,16 @@ public class PlayerController : MonoBehaviour
 
             if (animator != null)
             {
-                if (_isSneaking)
-                {
-                    animator.SetBool("IsSneaking", true);
-                    animator.SetBool("isRunning", false);
-
-                }
-                else
-                {
-                    animator.SetBool("isRunning", true);
-                    animator.SetBool("IsSneaking", false);
-                }
+                animator.SetBool("IsMoving", true);
             }
         }
         else
         {
             if (animator != null)
             {
-                animator.SetBool("isRunning", false);
-                animator.SetBool("IsSneaking", false);
+                animator.SetBool("IsMoving", false);
             }
-                
+
         }
     }
 
