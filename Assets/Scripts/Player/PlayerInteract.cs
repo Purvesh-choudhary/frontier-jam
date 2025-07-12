@@ -135,12 +135,8 @@ public class PlayerInteract : MonoBehaviour
         
         if (heldObject != null)
         {
-            Vector3 throwDir = interactOrigin.forward;
-            heldObject.OnThrow(throwDir * throwForce);
+            heldObject.OnThrow();
             heldObject = null;
-            
-            // Hide trajectory after throwing
-            // trajectoryLine.enabled = false;
         }
         else if (closestInteractable != null)
         {
@@ -154,20 +150,6 @@ public class PlayerInteract : MonoBehaviour
             }
         }
     }
-
-    // public void ToggleTrajectoryVisibility()
-    // {
-    //     showTrajectory = !showTrajectory;
-    //     if (!showTrajectory)
-    //         trajectoryLine.enabled = false;
-    // }
-
-    // public void SetTrajectoryColor(Color color)
-    // {
-    //     if (trajectoryLine != null)
-    //         trajectoryLine.startColor = color;
-    //         trajectoryLine.endColor = color;
-    // }
 
     private void OnDrawGizmosSelected()
     {
