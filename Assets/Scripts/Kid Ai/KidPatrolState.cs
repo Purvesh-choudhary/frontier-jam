@@ -10,6 +10,7 @@ public class KidPatrolState : KidState
         kid.agent.isStopped = false;
         kid.agent.speed = kid.patrolSpeed;
         kid.agent.SetDestination(kid.patrolPoints[currentWaypoint].position);
+        kid.animator.SetTrigger("Patrol");
     }
 
     public override void Update()

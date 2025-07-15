@@ -12,6 +12,7 @@ public class KidSearchState : KidState
         searchTime = kid.searchTime;
         kid.agent.isStopped = true;
         timer = 0f;
+        kid.animator.SetTrigger("Search");
     }
 
     public override void Update()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,12 +36,19 @@ public class KidsAI : MonoBehaviour
     public float cageDistance = 1f;
     public bool isChickenInCage = false;
 
+    [HideInInspector]
+    public Animator animator;
 
-
+    void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+    
 
     void Start()
     {
         SwitchState(new KidPatrolState(this));
+        
     }
 
     void Update()

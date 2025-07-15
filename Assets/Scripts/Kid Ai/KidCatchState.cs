@@ -9,6 +9,7 @@ public class KidCatchState : KidState
     public override void Enter()
     {
         kid.agent.isStopped = false;
+        kid.animator.SetTrigger("Catch");
 
         kid.player.GetComponent<PlayerController>().enabled = false;
         kid.cageTransform.GetComponentInParent<Rigidbody>().isKinematic = true;

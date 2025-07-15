@@ -12,6 +12,7 @@ public class KidChaseState : KidState
     {
         kid.agent.isStopped = false;
         kid.agent.speed = kid.chaseSpeed;
+        kid.animator.SetTrigger("Chase");
     }
 
     public override void Update()

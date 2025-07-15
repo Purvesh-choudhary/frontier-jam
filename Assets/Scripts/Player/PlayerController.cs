@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _inputMove;
     private bool _isGrounded;
     private bool _isSneaking;
-    
+
     private float _turnSmoothVelocity;
     private float _turnSmoothTime = 0.1f;
     private bool _wasGroundedLastFrame = true;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        playerInput.actions["Sneak"].performed += ctx =>_isSneaking = true;
+        playerInput.actions["Sneak"].performed += ctx => _isSneaking = true;
         playerInput.actions["Sneak"].canceled += ctx => _isSneaking = false;
 
     }
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         if (!_isGrounded)
         {
             if (animator != null)
-                animator.SetBool("IsInAir",true);
+                animator.SetBool("IsInAir", true);
         }
 
         //  // Detect Fall : grounded → falling
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         {
             if (animator != null)
             {
-                animator.SetBool("IsInAir",false);
+                animator.SetBool("IsInAir", false);
             }
         }
 
@@ -92,8 +92,9 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
-    public void OnAttack(){
+
+    public void OnAttack()
+    {
         if (animator != null)
         {
             animator.SetTrigger("Kick");
@@ -157,4 +158,5 @@ public class PlayerController : MonoBehaviour
         _velocity.y += gravity * Time.deltaTime;
         _controller.Move(_velocity * Time.deltaTime);
     }
+
 }

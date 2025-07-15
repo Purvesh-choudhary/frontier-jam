@@ -1,5 +1,7 @@
+// 🧠 GameManager.cs
+// Manages overall game state, transitions, win/loss, day cycle
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System;
 
 public enum GameState
@@ -47,19 +49,19 @@ public class GameManager : MonoBehaviour
         if (gameState == GameState.FreeRoam)
         {
             freeRoamTimer -= Time.deltaTime;
+            UiManager.Instance.UpdateRoamTimer(freeRoamTimer);
             if (freeRoamTimer <= 0)
-            {
+            {   
+                
                 TriggerKidArrival();
             }
         }
     }
 
-    // 🔄 Call this to switch state cleanly
     public void ChangeState(GameState newState)
     {
         gameState = newState;
         Debug.Log($"Game State changed to: {newState}");
-
         OnGameStateChanged?.Invoke(newState);
 
         switch (newState)
@@ -67,27 +69,21 @@ public class GameManager : MonoBehaviour
             case GameState.Intro:
                 StartIntroSequence();
                 break;
-
             case GameState.FreeRoam:
                 StartFreeRoam();
                 break;
-
             case GameState.KidArrivalCutscene:
                 StartCutscene();
                 break;
-
             case GameState.DayPlaying:
                 StartDayGameplay();
                 break;
-
             case GameState.NightRecap:
                 ShowNightRecap();
                 break;
-
             case GameState.GameOver:
                 TriggerGameOver();
                 break;
-
             case GameState.Victory:
                 TriggerVictory();
                 break;
@@ -96,31 +92,32 @@ public class GameManager : MonoBehaviour
 
     private void StartDayGameplay()
     {
-        throw new NotImplementedException();
+        UiManager.Instance.UpdateTask("Day 1 - Operation: Feathers Fly");
+        
     }
 
     private void StartIntroSequence()
     {
-        // Trigger your intro comic/cutscene
-        // Then transition to FreeRoam after a few seconds
+        // Play comic or intro cutscene, then begin free roam
         Invoke(nameof(StartFreeRoam), 5f);
     }
 
     private void StartFreeRoam()
     {
-        ChangeState(GameState.FreeRoam);
         freeRoamTimer = freeRoamTime;
+        gameState = GameState.FreeRoam;
     }
 
     private void TriggerKidArrival()
     {
+        UiManager.Instance.UpdateRoamTimer("Kids Are Coming !");
         ChangeState(GameState.KidArrivalCutscene);
     }
 
     private void StartCutscene()
     {
-        // Cutscene logic can subscribe to OnGameStateChanged or call back to:
-        Invoke(nameof(BeginDayGameplay), 5f);
+        // Use Unity Timeline or a coroutine sequence
+        // Invoke(nameof(BeginDayGameplay), 5f);
     }
 
     private void BeginDayGameplay()
@@ -132,7 +129,7 @@ public class GameManager : MonoBehaviour
     {
         if (currentDay >= maxDays)
         {
-            TriggerGameOver(); // Or CheckWinCondition();
+            TriggerGameOver(); // Or TriggerVictory if escaped
         }
         else
         {
@@ -143,7 +140,6 @@ public class GameManager : MonoBehaviour
 
     private void ShowNightRecap()
     {
-        // Show comic panel / diary, then start next day
         Invoke(nameof(BeginDayGameplay), 5f);
     }
 
@@ -163,14 +159,11 @@ public class GameManager : MonoBehaviour
 
     private void TriggerGameOver()
     {
-        Debug.Log("You were caught too many times!");
-        ChangeState(GameState.GameOver);
-        // Load fail screen or scene
+        Debug.Log("GAME OVER: You were caught too many times!");
     }
 
     private void TriggerVictory()
     {
-        Debug.Log("You escaped the farm!");
-        // Load win screen or trigger cutscene
+        Debug.Log("VICTORY: You escaped the farm!");
     }
 }

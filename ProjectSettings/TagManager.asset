@@ -3,18 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Cage
+  - Horse
+  - Crops
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NPC
   - Water
   - UI
   - Post Processing
   - Ground
   - Interactable
-  - 
+  - NAV AVOID
   - 
   - 
   - 

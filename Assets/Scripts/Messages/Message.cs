@@ -12,14 +12,28 @@ public class Message : MonoBehaviour
     [SerializeField] string message;
     [SerializeField] float fadeTimer = 5f;
 
-    private void Start()
-    {
-        // uiMessageAnimator = uiMessageText.GetComponent<Animator>();
-    }
+    // void Start()
+    // {
+    //     GameManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    // }
+
+    // void OnDisable()
+    // {
+    //     GameManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    // }
+
+
+    // void OnGameStateChanged(GameState state)
+    // {
+    //     if (state == GameState.KidArrivalCutscene)
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") )
         {
             uiMessageText.text = message;
         }
@@ -27,23 +41,9 @@ public class Message : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") )
         {
             uiMessageText.text = "";
         }
     }
-
-
-    // IEnumerator RemoveMessage()
-    // {
-    //     yield return new WaitForSeconds(fadeTimer);
-    //     if (uiMessageText.text == message)
-    //     {
-    //         uiMessageText.text = "";
-    //     }
-
-    // } 
-
-
-
 }

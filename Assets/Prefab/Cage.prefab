@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6560850099628964661
 Transform:
   m_ObjectHideFlags: 0
@@ -62,12 +62,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fcf3cea1360461f46a8a6c2976ebe830,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2500005
+      value: 1.69
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fcf3cea1360461f46a8a6c2976ebe830,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 47.03
+      value: 46.67
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fcf3cea1360461f46a8a6c2976ebe830,
         type: 3}
@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: fcf3cea1360461f46a8a6c2976ebe830,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fcf3cea1360461f46a8a6c2976ebe830,
         type: 3}
       propertyPath: m_Name
@@ -134,6 +139,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fcf3cea1360461f46a8a6c2976ebe830,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3590530852520154213, guid: fcf3cea1360461f46a8a6c2976ebe830,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4631510785243965186, guid: fcf3cea1360461f46a8a6c2976ebe830,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -142,7 +157,12 @@ PrefabInstance:
     - target: {fileID: 5326869647247139276, guid: fcf3cea1360461f46a8a6c2976ebe830,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5326869647247139276, guid: fcf3cea1360461f46a8a6c2976ebe830,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -160,6 +180,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7000802195395999634}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fcf3cea1360461f46a8a6c2976ebe830,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2984742748112958545}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fcf3cea1360461f46a8a6c2976ebe830,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 488167260507817684}
     - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: fcf3cea1360461f46a8a6c2976ebe830,
         type: 3}
       insertIndex: -1
@@ -220,7 +248,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -237,8 +265,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMessageText: {fileID: 0}
-  message: 
+  message: i Hate Cages
   fadeTimer: 5
+--- !u!65 &2984742748112958545
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094859383630953865}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.027068848, y: 0.02826053, z: 0.029592376}
+  m_Center: {x: -0, y: 0, z: 0}
+--- !u!95 &488167260507817684
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094859383630953865}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e6b58adf5c4a87148aea5806c6d9e8a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5531764765520888008 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -516098083770646512, guid: fcf3cea1360461f46a8a6c2976ebe830,
