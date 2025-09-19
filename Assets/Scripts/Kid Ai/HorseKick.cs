@@ -8,6 +8,7 @@ public class HorseKick : MonoBehaviour
 
     [SerializeField] Vector3 kickDirection;
     [SerializeField] float kickForce;
+    [SerializeField] Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class HorseKick : MonoBehaviour
     {
         if (other.CompareTag("Cage"))
         {
+            animator.SetTrigger("Kick");
             StartCoroutine(OpenByKick(other));
         }
     }
